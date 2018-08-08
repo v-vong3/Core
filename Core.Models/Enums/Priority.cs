@@ -2,7 +2,7 @@
 
 namespace Core.Models.Enums
 {
-    public enum EnumPriority
+    public enum Priority
     {
         None = 0,
         Low,

@@ -45,7 +45,9 @@ namespace Core.Reflection
                 throw new ArgumentNullException($"Parameter [{nameof(typeName)}] cannot be null, empty or whitespace.");
             }
 
-            var type = GetExportedTypes(assemblyName).Where(t => t.Name == typeName);
+            var type = GetExportedTypes(assemblyName).FirstOrDefault(t => t.Name == typeName);
+
+            return type.GetRuntimeMethods();  // TODO: Evaluate between GetMethods()
         }
 
          

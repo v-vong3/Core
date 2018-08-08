@@ -13,6 +13,6 @@ namespace Core.Messaging.Contracts
 
         string Topic { get; set; }
 
-        EnumPriority Priority { get; set; }
+        Priority Priority { get; set; }
     }
 }
