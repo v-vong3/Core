@@ -4,9 +4,14 @@ using System.Text;
 
 namespace Core.Seeding.Contract
 {
+    /// <summary>
+    /// Contract for 
+    /// </summary>
     public interface ISeederContext
     {
         object Context { get; }
+
+
 
     }
 }

@@ -10,9 +10,11 @@ This is an opinated list of core components and even more opinated implementatio
 
 Completed Modules: (None) 
 
+- [ ] Core.Globalization 
 - [ ] Core.Interfaces  
 - [ ] Core.Logging  
 - [ ] Core.Messaging  
 - [ ] Core.Models  
+- [ ] Core.Reflection
 - [ ] Core.Security  
 - [ ] Core.Seeding  

@@ -5,7 +5,7 @@ using System.Text;
 namespace Core.Seeding.Contract
 {
     /// <summary>
-    /// Contract for the data that is being seeded
+    /// Contract for unifying seed data structure 
     /// </summary>
     public interface ISeedDatum
     {
@@ -20,8 +20,8 @@ namespace Core.Seeding.Contract
         /// </remarks>
         DateTime DateAdded { get; }
 
-        object Data { get; }
+        object Value { get; }
 
-        Type Type { get; } // TODO: May need to be string to be more generic
+        Type Type { get; }
     }
 }
