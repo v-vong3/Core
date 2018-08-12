@@ -1,10 +1,11 @@
 ﻿using Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace Core.Logging.Contracts
 {
+    /// <summary>
+    /// Contract for implementing the Factory Pattern for the creation of <see cref="ILogger"/> objects
+    /// </summary>
     public interface ILoggerFactory : IFactory<ILoggerAsync>
     { }
 }

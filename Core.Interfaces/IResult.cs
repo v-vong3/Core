@@ -9,11 +9,13 @@ namespace Core.Interfaces
     /// </summary>
     public interface IResult
     {
+        TimeSpan Duration { get; }
+
         bool HasFailed { get; }
 
-        string ErrorMessage { get; set; }
+        string ErrorMessage { get; }
 
-        object Data { get; set; } 
+        object Data { get; } 
     }
 
     /// <summary>
@@ -22,10 +24,12 @@ namespace Core.Interfaces
     /// <typeparam name="T">The desired data type of <c>IResult.Data</c></typeparam>
     public interface IResult<T>
     {
+        TimeSpan Duration { get; }
+
         bool HasFailed { get; }
 
-        string ErrorMessage { get; set; }
+        string ErrorMessage { get; }
 
-        T Data { get; set; }
+        T Data { get;  }
     }
 }

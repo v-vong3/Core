@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Core.Seeding.Contract
+namespace Core.Seeding.Contracts
 {
     /// <summary>
     /// Contract for unifying seed data structure 
@@ -12,8 +10,8 @@ namespace Core.Seeding.Contract
         int Order { get; set; }
 
         /// <summary>
-        /// Secondary sort criteria (descending order) for determining the 
-        /// processing order of each datum
+        /// Secondary sort criteria (ascending order aka older seeds are pushed to the back) 
+        /// for determining the processing order of each datum
         /// </summary>
         /// <remarks>
         /// This property is meant to add transparency into how data will be seeded 
@@ -22,6 +20,13 @@ namespace Core.Seeding.Contract
 
         object Value { get; }
 
-        Type Type { get; }
+        Type ValueType { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <completionlist cref="SeedDatumType"/>
+        SeedDatumType DatumType { get; }
+
     }
 }

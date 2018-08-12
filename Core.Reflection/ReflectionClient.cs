@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,18 +7,40 @@ using System.Reflection;
 
 namespace Core.Reflection
 {
-    public class ReflectionUtility : IDisposable
+    /// <summary>
+    /// Client for simple code introspection
+    /// </summary>
+    public class ReflectionClient : IReflectionClient
     {
         
-        public string BaseAssemblyPath { get; }
+        public string BaseAssemblyPath { get; private set; }
 
+        public Assembly CurrentAssembly { get; private set; }
 
-        public ReflectionUtility(string baseAssemblyPath)
+        /// <summary>
+        /// Creates an instance of <see cref="ReflectionClient"/>
+        /// </summary>
+        /// <param name="baseAssemblyPath">Fully-qualified physical directory path</param>
+        public ReflectionClient(string baseAssemblyPath)
         {
+            Guard.AgainstNonExistentPath(baseAssemblyPath, nameof(baseAssemblyPath));
+
             BaseAssemblyPath = baseAssemblyPath;
         }
 
+        public ReflectionClient(Assembly assembly)
+        {
+            Guard.AgainstNullArgument(assembly, nameof(assembly));
 
+            CurrentAssembly = assembly;
+            BaseAssemblyPath = CurrentAssembly.Location;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="assemblyName"></param>
+        /// <returns></returns>
         public IEnumerable<Type> GetExportedTypes(string assemblyName)
         {
             if(string.IsNullOrWhiteSpace(assemblyName))
@@ -29,7 +52,7 @@ namespace Core.Reflection
 
             if(!File.Exists(fullyQualifiedPath))
             {
-                throw new ArgumentException($"File [{assemblyName}] does not exist.");
+                throw new ArgumentException($"Invalid parameter value.  Assembly [{assemblyName}] does not exist at the specified location.");
             }
 
             var assembly = Assembly.LoadFile(fullyQualifiedPath);
@@ -47,7 +70,7 @@ namespace Core.Reflection
 
             var type = GetExportedTypes(assemblyName).FirstOrDefault(t => t.Name == typeName);
 
-            return type.GetRuntimeMethods();  // TODO: Evaluate between GetMethods()
+            return type.GetRuntimeMethods();  // TODO: Evaluate pros/cons with GetMethods()
         }
 
          
@@ -64,7 +87,8 @@ namespace Core.Reflection
                     // TODO: dispose managed state (managed objects).
                 }
 
-                // TODO: set large fields to null.
+                BaseAssemblyPath = null;
+                CurrentAssembly = null;
 
                 disposedValue = true;
             }

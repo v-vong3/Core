@@ -1,18 +1,14 @@
 ﻿using Core.Interfaces;
-using Core.Seeding.Contract;
-using System;
-using System.Collections.Generic;
 
 namespace Core.Seeding.Contracts
 {
     /// <summary>
-    /// Contract for data seeder
+    /// Contract for execution of a <see cref="ISeedStrategy"/>
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public interface ISeeder<T> : ICommandAsync<T>
+    public interface ISeeder : ICommandAsync<IResult>
     {
-        IEnumerable<ISeedDatum> SeedData { get; }
+        ISeedStrategy SeedStrategy { get; set; }
 
-        ISeederContext SeederContext { get; }
+
     }
 }

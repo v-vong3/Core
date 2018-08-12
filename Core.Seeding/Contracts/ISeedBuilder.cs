@@ -1,15 +1,16 @@
 ﻿using Core.Interfaces;
-using Core.Seeding.Contract;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace Core.Seeding.Contracts
 {
     /// <summary>
     /// Contract for registering and unregistering seeding data sources
     /// </summary>
-    public interface ISeedBuilder : IBuilderAsync<ISeedSource>
+                                    
+    public interface ISeedBuilder 
+        : IBuilderAsync<IOrderedEnumerable<ISeedDatum>> // DESIGN: Enforcing a sorted collection to guarantee order of enumeration
     {
         /// <summary>
         /// Registers <see cref="ISeedDatum"/> wrapped POCOs for data seed process  
@@ -20,40 +21,30 @@ namespace Core.Seeding.Contracts
         /// </remarks>
         /// <param name="seedData">Collection of <see cref="ISeedDatum"/></param>
         /// <returns>The current builder instance to enable fluent API</returns>
-        ISeedBuilder AddDatum(params ISeedDatum[] seedData);
-
-        /// <summary>
-        /// Registers the filenames of scripts for data seed process
-        /// </summary>
-        /// <param name="scriptFilenames">Fully-qualified filenames</param>
-        /// <returns>The current builder instance to enable fluent API</returns>
-        ISeedBuilder AddScript(params string[] scriptFilenames);
+        ISeedBuilder Add(params ISeedDatum[] seedData);
 
 
         /// <summary>
-        /// Removes all <see cref="ISeedDatum"/> having matching <see cref="ISeedDatum.Type"/>
+        /// Removes all <see cref="ISeedDatum"/> having matching <see cref="ISeedDatum.ValueType"/>
         /// </summary>
-        /// <param name="type">The <see cref="Type"/> of the seed data</param>
+        /// <param name="type">The <see cref="Type"/> of the raw data</param>
         /// <returns>The current builder instance to enable fluent API</returns>
-        ISeedBuilder RemoveDatum(Type type);
+        ISeedBuilder Remove(Type type);
+
 
         /// <summary>
-        /// Unregisters a script matching the provided argument value
+        /// Removes all <see cref="ISeedDatum"/> having matching <see cref="ISeedDatum.DatumType"/>
         /// </summary>
-        /// <param name="scriptFilename"></param>
-        /// <returns>The current builder instance to enable fluent API</returns>
-        ISeedBuilder RemoveScript(string scriptFilename);
+        /// <param name="datumType">The <see cref="SeedDatumType"/>The type of the seed datum</param>
+        /// <returns></returns>
+        ISeedBuilder Remove(SeedDatumType datumType);
+
 
         /// <summary>
-        /// Unregisters all <see cref="ISeedDatum"/> by default.  
-        /// If <c>includeScripts</c> flag is set to true, all scripts are unregistered as well 
+        /// Unregisters all <see cref="ISeedDatum"/>
         /// </summary>
-        /// <param name="includeScripts">
-        /// True, to unregister all scripts along with data objects.  
-        /// False, to only unregister data objects. 
-        /// </param>
         /// <returns>The current builder instance to enable fluent API</returns>
-        ISeedBuilder Clear(bool includeScripts);
+        ISeedBuilder Clear();
 
     }
 }
