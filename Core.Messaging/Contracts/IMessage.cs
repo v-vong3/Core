@@ -14,5 +14,7 @@ namespace Core.Messaging.Contracts
         string Topic { get; set; }
 
         Priority Priority { get; set; }
+
+        DateTime Date { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-namespace Core.Reflection
+namespace Core.Reflection.Contracts
 {
     public interface IReflectionClient : IDisposable
     {

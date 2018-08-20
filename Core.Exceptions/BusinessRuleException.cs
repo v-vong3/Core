@@ -1,9 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace Core.Exceptions
 {
+    /// <summary>
+    /// <see cref="Exception"/> object for any business rule violation
+    /// </summary>
     public class BusinessRuleException : Exception
     {
         private static string BusinessExceptionMessage => "Violation of business rule.";

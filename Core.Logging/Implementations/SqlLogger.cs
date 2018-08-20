@@ -25,6 +25,11 @@ namespace Core.Logging.Implementations
             {
                 var sql = string.Empty; // TODO: YOUR implementation code HERE
 
+
+                // SECURITY WARNING: Use of raw SQL command is vulnerable to SQL injection attacks.
+                // Recommended to use OdbcCommandBuilder instead
+
+
                 using (var command = new OdbcCommand(sql))
                 {
                     command.Connection = connection;

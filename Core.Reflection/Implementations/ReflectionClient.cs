@@ -1,11 +1,12 @@
 ﻿using Core.Exceptions;
+using Core.Reflection.Contracts;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace Core.Reflection
+namespace Core.Reflection.Implementations
 {
     /// <summary>
     /// Client for simple code introspection
