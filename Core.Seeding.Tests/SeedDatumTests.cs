@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Core.Seeding.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class SeedDatumTests
     {
         [TestMethod]
         public void TestMethod1()

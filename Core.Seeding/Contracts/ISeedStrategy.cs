@@ -1,4 +1,6 @@
-﻿using Core.Interfaces;
+﻿
+using Core.Interfaces.Patterns;
+using System.Linq;
 
 namespace Core.Seeding.Contracts
 {
@@ -11,6 +13,6 @@ namespace Core.Seeding.Contracts
     /// </remarks>
     public interface ISeedStrategy : IStrategyAsync
     {
-
+        IOrderedEnumerable<ISeedDatum> SeedData { get; }
     }
 }

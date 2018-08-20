@@ -1,6 +1,6 @@
-﻿using Core.Interfaces;
+﻿
+using Core.Interfaces.Patterns;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Core.Seeding.Contracts

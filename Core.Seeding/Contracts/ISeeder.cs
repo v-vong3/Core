@@ -1,4 +1,6 @@
 ﻿using Core.Interfaces;
+using Core.Interfaces.Patterns;
+using System.Linq;
 
 namespace Core.Seeding.Contracts
 {
@@ -8,7 +10,7 @@ namespace Core.Seeding.Contracts
     public interface ISeeder : ICommandAsync<IResult>
     {
         ISeedStrategy SeedStrategy { get; set; }
-
-
     }
+
+    
 }

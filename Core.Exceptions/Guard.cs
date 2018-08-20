@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Core.Exceptions
@@ -21,9 +22,9 @@ namespace Core.Exceptions
         // DESIGN: Assumes that the legal adult age is 18
         private static int LEGAL_AGE => 18;
 
-        private static string NameGuard(string argumentName)
+        private static string FormatName(string name)
         {
-            return argumentName == null ? string.Empty : $"[{argumentName}]";
+            return name == null ? string.Empty : $"[{name}]";
         }
 
         /// <summary>
@@ -34,7 +35,7 @@ namespace Core.Exceptions
         /// <returns>Throws appropriate exception if invalid, return null otherwise</returns>
         public static object AgainstNullArgument(string argument, string argumentName)
         {
-            var argName = NameGuard(argumentName);
+            var argName = FormatName(argumentName);
 
 
             if (string.IsNullOrWhiteSpace(argument))
@@ -53,38 +54,111 @@ namespace Core.Exceptions
         /// <returns>Throws appropriate exception if invalid, return null otherwise</returns>
         public static object AgainstNullArgument(object argument, string argumentName)
         {
-            var argName = NameGuard(argumentName);
+            var argName = FormatName(argumentName);
 
             if (argument == null)
             {
-                throw new ArgumentNullException($"Parameter [{argumentName}] cannot be null");
+                throw new ArgumentNullException($"Parameter {argumentName} cannot be null");
             }
 
             return null;
         }
 
-        public static object AgainstEmptyCollection(ICollection collection, string argumentName)
+        /// <summary>
+        /// Guard against null <c>String</c> variables
+        /// </summary>
+        /// <param name="variable">Variable of type string</param>
+        /// <param name="variableName">String literal name of variable</param>
+        /// <returns>Throws appropriate exception if invalid, return null otherwise</returns>
+        public static object AgainstNullVariable(string variable, string variableName)
         {
-            Guard.AgainstNullArgument(argumentName, nameof(argumentName));
-            Guard.AgainstNullArgument(collection, argumentName);
+            var name = FormatName(variableName);
 
-            if(collection.Count == 0)
+            if (variable == null)
             {
-                throw new ArgumentException($"Parameter [{argumentName}] must contain at least 1 element.");
+                throw new Exception($"{name} cannot be null, empty or whitespace");
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Guard against null <c>object</c> variables
+        /// </summary>
+        /// <param name="variable"></param>
+        /// <param name="variableName"></param>
+        /// <returns>Throws appropriate exception if invalid, return null otherwise</returns>
+        public static object AgainstNullVariable(object variable, string variableName)
+        {
+            var name = FormatName(variableName);
+
+            if (variable == null)
+            {
+                throw new NullReferenceException($"{name} cannot be null");
             }
 
             return null;
         }
 
 
-        public static object AgainstEmptyCollection(object[] collection, string argumentName)
+        /// <summary>
+        /// Guard against null <c>ICollection</c> objects
+        /// </summary>
+        /// <param name="collection">A <c>ICollection</c> object</param>
+        /// <param name="variableName">String literal name of variable</param>
+        /// <returns>Throws appropriate exception if invalid, return null otherwise</returns>
+        public static object AgainstEmptyCollection(ICollection collection, string variableName)
         {
-            Guard.AgainstNullArgument(argumentName, nameof(argumentName));
-            Guard.AgainstNullArgument(collection, argumentName);
+            Guard.AgainstNullVariable(variableName, nameof(variableName));
+            Guard.AgainstNullVariable(collection, variableName);
 
-            if (collection.Length == 0)
+            var name = FormatName(variableName);
+
+            if (collection.Count == 0)
             {
-                throw new ArgumentException($"Parameter [{argumentName}] must contain at least 1 element.");
+                throw new ArgumentException($"{name} must contain at least 1 element");
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Guard against null <c>ICollection<T></c> objects
+        /// </summary>
+        /// <param name="collection">A <c>ICollection</c> object</param>
+        /// <param name="variableName">String literal name of variable</param>
+        /// <returns>Throws appropriate exception if invalid, return null otherwise</returns>
+        public static object AgainstEmptyCollection<T>(ICollection<T> collection, string variableName)
+        {
+            Guard.AgainstNullVariable(variableName, nameof(variableName));
+            Guard.AgainstNullVariable(collection, variableName);
+
+            var name = FormatName(variableName);
+
+            if (collection.Count == 0)
+            {
+                throw new ArgumentException($"{name} must contain at least 1 element");
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Guard against empty arrays
+        /// </summary>
+        /// <param name="array">An <c>Array</c> variable</param>
+        /// <param name="variableName">String literal name of variable</param>
+        /// <returns>Throws appropriate exception if invalid, return null otherwise</returns>
+        public static object AgainstEmptyCollection(object[] array, string variableName)
+        {
+            Guard.AgainstNullVariable(variableName, nameof(variableName));
+            Guard.AgainstNullVariable(array, variableName);
+
+            var name = FormatName(variableName);
+
+            if (array.Length == 0)
+            {
+                throw new ArgumentException($"{name} must contain at least 1 element.");
             }
 
             return null;
@@ -104,9 +178,11 @@ namespace Core.Exceptions
             Guard.AgainstNullArgument(argumentName, nameof(argumentName));
             Guard.AgainstNullArgument(path, argumentName);
 
-            if(!Directory.Exists(path))
+            var argName = FormatName(argumentName);
+
+            if (!Directory.Exists(path))
             {
-                throw new ArgumentException($"Invalid [{argumentName}] value.  The provided path does not exist.");
+                throw new ArgumentException($"Invalid {argName} value.  The provided path does not exist.");
             }
 
             return null;
@@ -126,9 +202,11 @@ namespace Core.Exceptions
             Guard.AgainstNullArgument(argumentName, nameof(argumentName));
             Guard.AgainstNullArgument(filename, argumentName);
 
+            var argName = FormatName(argumentName);
+
             if (!File.Exists(filename))
             {
-                throw new ArgumentException($"Invalid [{argumentName}] value.  The provided file does not exist.");
+                throw new ArgumentException($"Invalid {argName} value.  The provided file does not exist.");
             }
 
             return null;
@@ -145,9 +223,11 @@ namespace Core.Exceptions
             Guard.AgainstNullArgument(argumentName, nameof(argumentName));
             Guard.AgainstNullArgument(dateOfBirth, argumentName);
 
-            if(dateOfBirth.Kind == DateTimeKind.Unspecified)
+            var argName = FormatName(argumentName);
+
+            if (dateOfBirth.Kind == DateTimeKind.Unspecified)
             {
-                throw new Exception("Date does not specify that it is UTC or not.  Unable to accurately determine age.");
+                throw new Exception($"{argName} does not specify that it is UTC or not.  Unable to accurately determine age.");
             }
 
             if(dateOfBirth.Kind == DateTimeKind.Local)

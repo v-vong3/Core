@@ -12,8 +12,8 @@ namespace Core.Seeding.Implementations
     /// </summary>
     public abstract class BaseSeedBuilder : ISeedBuilder
     {
-        // TODO: Test if using concurrent collection + Parallel.Invoke for inserts & deletes is better performance
-        protected IList<ISeedDatum> Seeds { get; }
+        // TODO: Test if using a concurrent collection + Parallel.Invoke for inserts & deletes is better performance
+        protected ICollection<ISeedDatum> Seeds { get; }
 
         public BaseSeedBuilder()
         {
@@ -21,33 +21,29 @@ namespace Core.Seeding.Implementations
         }
 
 
-        public ISeedBuilder Add(params ISeedDatum[] seedData)
+        public virtual ISeedBuilder Add(params ISeedDatum[] seedData)
         {
-            // Early out if nothing to add
-            if(seedData?.Length == 0)
+            if(seedData?.Length > 0)
             {
-                return this;
+                foreach (var seed in seedData)
+                {
+                    Seeds.Add(seed);
+                }
             }
-
-            foreach(var seed in seedData)
-            {
-                Seeds.Add(seed);
-            }
-
 
             return this;
         }
 
 
 
-        public ISeedBuilder Clear()
+        public virtual ISeedBuilder Clear()
         {
             Seeds.Clear();
 
             return this;
         }
 
-        public ISeedBuilder Remove(Type type)
+        public virtual ISeedBuilder Remove(Type type)
         {
             var matches = Seeds.Where(s => s.ValueType == type);
 
@@ -59,7 +55,7 @@ namespace Core.Seeding.Implementations
             return this;
         }
 
-        public ISeedBuilder Remove(SeedDatumType datumType)
+        public virtual ISeedBuilder Remove(SeedDatumType datumType)
         {
             var matches = Seeds.Where(s => s.DatumType == datumType);
 
@@ -73,9 +69,10 @@ namespace Core.Seeding.Implementations
 
 
 
-        public Task<IOrderedEnumerable<ISeedDatum>> BuildAsync()
+        public virtual Task<IOrderedEnumerable<ISeedDatum>> BuildAsync()
         {
-            var sortedSeeds = Seeds.OrderBy(s => s.Order).ThenBy(s => s.DateAdded);
+            var sortedSeeds = Seeds.OrderBy(s => s.Order)
+                                   .ThenBy(s => s.DateAdded);
 
             return Task.FromResult(sortedSeeds);
         }

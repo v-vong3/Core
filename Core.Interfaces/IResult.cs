@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Core.Interfaces
 {
@@ -9,13 +7,13 @@ namespace Core.Interfaces
     /// </summary>
     public interface IResult
     {
-        TimeSpan Duration { get; }
+        TimeSpan Duration { get; set; }
 
         bool HasFailed { get; }
 
-        string ErrorMessage { get; }
+        string ErrorMessage { get; set; }
 
-        object Data { get; } 
+        object Data { get; set; } 
     }
 
     /// <summary>
@@ -24,12 +22,12 @@ namespace Core.Interfaces
     /// <typeparam name="T">The desired data type of <c>IResult.Data</c></typeparam>
     public interface IResult<T>
     {
-        TimeSpan Duration { get; }
+        TimeSpan Duration { get; set; }
 
         bool HasFailed { get; }
 
-        string ErrorMessage { get; }
+        string ErrorMessage { get; set; }
 
-        T Data { get;  }
+        T Data { get; set; }
     }
 }

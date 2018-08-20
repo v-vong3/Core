@@ -19,15 +19,13 @@ namespace Core.Seeding
             ValueType = valueType;
             DatumType = datumType;
 
-            // DESIGN: All date-related entities must use UTC format to account for leap years
-            // and daylight savings time
+            // DESIGN: All date-related entities must use UTC format to account for time inconsistencies
+            // such as leap year & daylight savings time
             DateAdded = DateTime.UtcNow;  
         }
 
-        public int Order { get; set; }
+        public int Order { get; set; } = 1;
 
-        
 
-        
     }
 }

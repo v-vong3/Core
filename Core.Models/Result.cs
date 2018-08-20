@@ -1,38 +1,27 @@
 ﻿using System;
+using System.Diagnostics;
 using Core.Interfaces;
 
 namespace Core.Models
 {
     public class Result : IResult
     {
-        public TimeSpan Duration { get; }
-        public bool HasFailed { get; } = true;
-        public string ErrorMessage { get; }
-        public object Data { get; }
+        public TimeSpan Duration { get; set; }
+        public string ErrorMessage { get; set; }
+        public object Data { get; set; }
 
-
-        public Result()
-        {
-
-        }
+        public bool HasFailed => string.IsNullOrWhiteSpace(ErrorMessage);
     }
 
 
     public class Result<T> : IResult<T> where T : class, new()
     {
-        public Result(TimeSpan duration, bool hasFailed, string errorMessage, T data)
-        {
-            Duration = duration;
-            HasFailed = hasFailed;
-            ErrorMessage = errorMessage;
-            Data = data;
-        }
+        public TimeSpan Duration { get; set; }
+        public string ErrorMessage { get; set; }
+        public T Data { get; set; }
 
-        public TimeSpan Duration { get; }
-        public bool HasFailed { get; }
-        public string ErrorMessage { get; }
-        public T Data { get; }
 
+        public bool HasFailed => string.IsNullOrWhiteSpace(ErrorMessage);
 
     }
 }

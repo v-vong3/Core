@@ -1,7 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace Core.Interfaces
+namespace Core.Interfaces.Patterns
 {
     /// <summary>
     /// Contract for a synchronous Command Pattern

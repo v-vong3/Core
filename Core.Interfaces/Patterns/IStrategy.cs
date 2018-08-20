@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Core.Interfaces
+namespace Core.Interfaces.Patterns
 {
     /// <summary>
     /// Contract for a synchronous Strategy Pattern
