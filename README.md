@@ -4,26 +4,44 @@ This is an opinated list of core components and even more opinated implementatio
 
 ## Status
 
-** Start of Generation 3 Iteration of .NET version using .NET Standard 2
+Slowly converting code to .NET Standard 2 and revamping structures
+
 
 ## TODO
 
-* Create unit tests
-* Replace implemented async placeholders
-* Evaluate performance and concurrencies
-* Add READMEs to all projects 
+### Short-Term
+* Make Unit tests
+* Code
+
+### Long-Term
+* Increase unit test code coverage to 100% 
+* Replace async placeholders with actual implementations
+* Benchmark performance
+  * x86
+  * x64
+* Evaluate concurrencies in various environmental contexts
+  * Console
+  * Desktop
+  * Web
+* <s>Add READMEs to all projects</s>
+* Fill out READMEs
 
 
-### Roadmap
+## Roadmap
 
-Completed Modules: 
+### Legend
+* [ ] - ongoing
+* [-] - refactor  
+* [x] - review-ready  
+* [r] - reviewed  
 
-- [ ] Core.Exceptions
+### Modules
+- [x] Core.Exceptions
 - [ ] Core.Globalization 
 - [x] Core.Interfaces  
 - [ ] Core.Logging  
 - [ ] Core.Messaging  
 - [ ] Core.Models  
-- [ ] Core.Reflection
-- [ ] Core.Security  
-- [ ] Core.Seeding  
+- [-] Core.Reflection
+- [-] Core.Security  
+- [x] Core.Seeding  
