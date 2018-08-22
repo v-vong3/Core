@@ -1,5 +1,4 @@
-﻿
-namespace Core.Logging.Contracts
+﻿namespace Core.Logging.Contracts
 {
     /// <summary>
     /// Defines all valid log message category 

@@ -40,7 +40,7 @@ namespace Core.Exceptions
 
             if (string.IsNullOrWhiteSpace(argument))
             {
-                return new ArgumentNullException($"Parameter {argName} cannot be null, empty or whitespace.");
+                throw new ArgumentNullException($"Parameter {argName} cannot be null, empty or whitespace.");
             }
 
             return null;
@@ -74,7 +74,7 @@ namespace Core.Exceptions
         {
             var name = FormatName(variableName);
 
-            if (variable == null)
+            if (string.IsNullOrWhiteSpace(variable))
             {
                 throw new Exception($"{name} cannot be null, empty or whitespace");
             }
@@ -116,7 +116,7 @@ namespace Core.Exceptions
 
             if (collection.Count == 0)
             {
-                throw new ArgumentException($"{name} must contain at least 1 element");
+                throw new Exception($"{name} must contain at least 1 element");
             }
 
             return null;
@@ -137,14 +137,14 @@ namespace Core.Exceptions
 
             if (collection.Count == 0)
             {
-                throw new ArgumentException($"{name} must contain at least 1 element");
+                throw new Exception($"{name} must contain at least 1 element");
             }
 
             return null;
         }
 
         /// <summary>
-        /// Guard against empty arrays
+        /// Guard against empty array variables by throwing appropriate exceptions
         /// </summary>
         /// <param name="array">An <c>Array</c> variable</param>
         /// <param name="variableName">String literal name of variable</param>
@@ -158,7 +158,7 @@ namespace Core.Exceptions
 
             if (array.Length == 0)
             {
-                throw new ArgumentException($"{name} must contain at least 1 element.");
+                throw new Exception($"{name} must contain at least 1 element.");
             }
 
             return null;
@@ -182,7 +182,7 @@ namespace Core.Exceptions
 
             if (!Directory.Exists(path))
             {
-                throw new ArgumentException($"Invalid {argName} value.  The provided path does not exist.");
+                throw new IOException($"Invalid {argName} value.  The provided path does not exist.");
             }
 
             return null;
@@ -206,7 +206,7 @@ namespace Core.Exceptions
 
             if (!File.Exists(filename))
             {
-                throw new ArgumentException($"Invalid {argName} value.  The provided file does not exist.");
+                throw new IOException($"Invalid {argName} value.  The provided file does not exist.");
             }
 
             return null;
@@ -230,15 +230,17 @@ namespace Core.Exceptions
                 throw new Exception($"{argName} does not specify that it is UTC or not.  Unable to accurately determine age.");
             }
 
-            if(dateOfBirth.Kind == DateTimeKind.Local)
+            if (dateOfBirth.Kind == DateTimeKind.Local)
             {
                 // Normalize DOB to UTC
                 dateOfBirth = dateOfBirth.ToUniversalTime();
             }
 
-            var isMinor = dateOfBirth < DateTime.UtcNow.AddYears(-18);
+            var minimumDate = DateTime.UtcNow.AddYears(LEGAL_AGE * -1);
 
-            if(isMinor)
+            var isMinor = dateOfBirth > minimumDate;
+
+            if (isMinor)
             {
                 throw new BusinessRuleException("Date of birth belongs to a minor");
             }
@@ -248,6 +250,6 @@ namespace Core.Exceptions
 
 
 
-        
+
     }
 }

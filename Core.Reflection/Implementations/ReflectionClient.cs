@@ -13,7 +13,7 @@ namespace Core.Reflection.Implementations
     /// </summary>
     public class ReflectionClient : IReflectionClient
     {
-        
+
         public string BaseAssemblyPath { get; private set; }
 
         public Assembly CurrentAssembly { get; private set; }
@@ -44,14 +44,14 @@ namespace Core.Reflection.Implementations
         /// <returns></returns>
         public IEnumerable<Type> GetExportedTypes(string assemblyName)
         {
-            if(string.IsNullOrWhiteSpace(assemblyName))
+            if (string.IsNullOrWhiteSpace(assemblyName))
             {
                 throw new ArgumentNullException($"Parameter [{nameof(assemblyName)}] cannot be null, empty or whitespace.");
             }
 
             var fullyQualifiedPath = Path.Combine(BaseAssemblyPath, assemblyName);
 
-            if(!File.Exists(fullyQualifiedPath))
+            if (!File.Exists(fullyQualifiedPath))
             {
                 throw new ArgumentException($"Invalid parameter value.  Assembly [{assemblyName}] does not exist at the specified location.");
             }
@@ -64,7 +64,7 @@ namespace Core.Reflection.Implementations
 
         public IEnumerable<MethodInfo> GetMethods(string assemblyName, string typeName)
         {
-            if(string.IsNullOrWhiteSpace(typeName))
+            if (string.IsNullOrWhiteSpace(typeName))
             {
                 throw new ArgumentNullException($"Parameter [{nameof(typeName)}] cannot be null, empty or whitespace.");
             }
@@ -74,7 +74,7 @@ namespace Core.Reflection.Implementations
             return type.GetRuntimeMethods();  // TODO: Evaluate pros/cons with GetMethods()
         }
 
-         
+
 
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls

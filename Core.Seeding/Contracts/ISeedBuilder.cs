@@ -8,8 +8,8 @@ namespace Core.Seeding.Contracts
     /// <summary>
     /// Contract for registering and unregistering seeding data sources
     /// </summary>
-                                    
-    public interface ISeedBuilder 
+
+    public interface ISeedBuilder
         : IBuilderAsync<IOrderedEnumerable<ISeedDatum>> // DESIGN: Enforcing a sorted collection to guarantee order of enumeration
     {
         /// <summary>

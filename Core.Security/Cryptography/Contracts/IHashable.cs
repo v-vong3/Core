@@ -1,8 +1,4 @@
-﻿using Core.Interfaces;
-using System;
-using System.Threading.Tasks;
-
-namespace Core.Security.Cryptography.Contracts
+﻿namespace Core.Security.Cryptography.Contracts
 {
     public interface IHashable
     {

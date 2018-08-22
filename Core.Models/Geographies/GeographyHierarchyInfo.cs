@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Core.Models.Geographies
+﻿namespace Core.Models.Geographies
 {
     public class GeographyHierarchyInfo
     {

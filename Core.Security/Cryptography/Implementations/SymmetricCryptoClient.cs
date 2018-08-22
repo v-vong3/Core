@@ -1,12 +1,10 @@
 ﻿using Core.Interfaces;
 using Core.Security.Cryptography.Contracts;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Core.Security.Cryptography.Implementations
 {
-    public class CryptoClient : ICryptoClient
+    public class SymmetricCryptoClient : ISymmetricCryptoClient
     {
         private static byte[] IV { get; set; }
         private static string Key { get; set; }
@@ -23,12 +21,12 @@ namespace Core.Security.Cryptography.Implementations
             throw new NotImplementedException();
         }
 
-        public ICryptoClient SetInjectionVector(byte[] iv)
+        public ISymmetricCryptoClient SetInjectionVector(byte[] iv)
         {
             throw new NotImplementedException();
         }
 
-        public ICryptoClient SetKey(string key)
+        public ISymmetricCryptoClient SetKey(string key)
         {
             throw new NotImplementedException();
         }

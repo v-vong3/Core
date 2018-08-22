@@ -1,9 +1,5 @@
 ﻿using Core.Interfaces;
-using Core.Models;
 using Core.Seeding.Contracts;
-using System;
-using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Core.Seeding.Implementations
@@ -23,5 +19,5 @@ namespace Core.Seeding.Implementations
 
     }
 
-    
+
 }

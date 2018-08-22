@@ -36,7 +36,7 @@ namespace Core.Logging.Implementations
                     connection.Open();
                     var rowsAffected = await command.ExecuteNonQueryAsync().ConfigureAwait(false);
 
-                    if(rowsAffected > 0)
+                    if (rowsAffected > 0)
                     {
                         return true;
                     }

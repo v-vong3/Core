@@ -1,7 +1,5 @@
 ﻿using Core.Messaging.Contracts;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Core.Messaging.Implementations
 {

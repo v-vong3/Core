@@ -1,5 +1,4 @@
-﻿using Core.Interfaces;
-using Core.Interfaces.Patterns;
+﻿using Core.Interfaces.Patterns;
 
 namespace Core.Logging.Contracts
 {

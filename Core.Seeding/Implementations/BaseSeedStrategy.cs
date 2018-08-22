@@ -1,10 +1,7 @@
 ﻿using Core.Exceptions;
 using Core.Interfaces;
 using Core.Seeding.Contracts;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Core.Seeding.Implementations

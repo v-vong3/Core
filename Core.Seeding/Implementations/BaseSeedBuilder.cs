@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Core.Seeding.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Core.Seeding.Contracts;
 
 namespace Core.Seeding.Implementations
 {
@@ -23,7 +23,7 @@ namespace Core.Seeding.Implementations
 
         public virtual ISeedBuilder Add(params ISeedDatum[] seedData)
         {
-            if(seedData?.Length > 0)
+            if (seedData?.Length > 0)
             {
                 foreach (var seed in seedData)
                 {
@@ -47,7 +47,7 @@ namespace Core.Seeding.Implementations
         {
             var matches = Seeds.Where(s => s.ValueType == type);
 
-            foreach(var match in matches)
+            foreach (var match in matches)
             {
                 Seeds.Remove(match);
             }
@@ -59,7 +59,7 @@ namespace Core.Seeding.Implementations
         {
             var matches = Seeds.Where(s => s.DatumType == datumType);
 
-            foreach(var match in matches)
+            foreach (var match in matches)
             {
                 Seeds.Remove(match);
             }

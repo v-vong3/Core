@@ -4,7 +4,7 @@ using System;
 namespace Core.Seeding
 {
     /// <summary>
-    /// A single element for seeding
+    /// A single data element for seeding
     /// </summary>
     public class SeedDatum : ISeedDatum
     {
@@ -21,7 +21,7 @@ namespace Core.Seeding
 
             // DESIGN: All date-related entities must use UTC format to account for time inconsistencies
             // such as leap year & daylight savings time
-            DateAdded = DateTime.UtcNow;  
+            DateAdded = DateTime.UtcNow;
         }
 
         public int Order { get; set; } = 1;

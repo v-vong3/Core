@@ -1,8 +1,6 @@
 ﻿using Core.Interfaces;
 using Core.Models;
 using Core.Seeding.Contracts;
-using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,13 +15,13 @@ namespace Core.Seeding.Implementations
     {
         // DESIGN: Strategy order matters and all strategies are invoked no matter the result (success or otherwise),
         // thus, the final result is the aggregate of all individual strategy result
-        public IOrderedEnumerable<ISeedStrategy> SeedStrategies { get;  }
+        public IOrderedEnumerable<ISeedStrategy> SeedStrategies { get; }
 
         public virtual async Task<IAggregateResult> ExecuteAsync()
         {
-            var aggregateResult = new AggregateResult(); 
+            var aggregateResult = new AggregateResult();
 
-            foreach(var ss in SeedStrategies)
+            foreach (var ss in SeedStrategies)
             {
                 var result = await ss.ExecuteAsync().ConfigureAwait(false);
 

@@ -32,11 +32,11 @@ namespace Core.Globalization
                 {
                     lock (_lock)
                     {
-                        if(_instance == null)
+                        if (_instance == null)
                         {
                             _instance = new TimeZoneClient();
                         }
-                            
+
                     }
                 }
 

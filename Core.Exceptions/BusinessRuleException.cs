@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace Core.Exceptions
 {
     /// <summary>
@@ -11,11 +10,11 @@ namespace Core.Exceptions
         private static string BusinessExceptionMessage => "Violation of business rule.";
 
 
-        public BusinessRuleException(string businessRule) 
+        public BusinessRuleException(string businessRule)
             : base(businessRule)
         { }
 
-        public BusinessRuleException(string businessRule, Exception innerException) 
+        public BusinessRuleException(string businessRule, Exception innerException)
             : base(businessRule, innerException)
         { }
 

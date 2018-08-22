@@ -1,9 +1,11 @@
-﻿using System;
-using System.Diagnostics;
-using Core.Interfaces;
+﻿using Core.Interfaces;
+using System;
 
 namespace Core.Models
 {
+    /// <summary>
+    /// Weak-typed response object
+    /// </summary>
     public class Result : IResult
     {
         public TimeSpan Duration { get; set; }
@@ -13,7 +15,10 @@ namespace Core.Models
         public bool HasFailed => string.IsNullOrWhiteSpace(ErrorMessage);
     }
 
-
+    /// <summary>
+    /// Strongly-typed response object
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class Result<T> : IResult<T> where T : class, new()
     {
         public TimeSpan Duration { get; set; }

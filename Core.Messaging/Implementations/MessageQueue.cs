@@ -1,8 +1,6 @@
 ﻿using Core.Messaging.Contracts;
 using System;
-using System.Collections.Generic;
 using System.Net;
-using System.Text;
 
 namespace Core.Messaging.Implementations
 {

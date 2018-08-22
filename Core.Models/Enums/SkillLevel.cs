@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Core.Models.Enums
+﻿namespace Core.Models.Enums
 {
     /// <summary>
-    /// 
+    /// Designates a level of proficiency in any skill
     /// </summary>
-    public enum Proficiency
+    public enum SkillLevel
     {
         Novice,
         Basic,

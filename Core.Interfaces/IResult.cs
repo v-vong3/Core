@@ -13,7 +13,7 @@ namespace Core.Interfaces
 
         string ErrorMessage { get; set; }
 
-        object Data { get; set; } 
+        object Data { get; set; }
     }
 
     /// <summary>

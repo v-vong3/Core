@@ -1,10 +1,7 @@
 ﻿using Core.Logging.Contracts;
-using Core.Reflection;
 using Core.Reflection.Implementations;
 using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace Core.Logging.Implementations
 {

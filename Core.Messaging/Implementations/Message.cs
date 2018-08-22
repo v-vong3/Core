@@ -1,8 +1,6 @@
 ﻿using Core.Messaging.Contracts;
 using Core.Models.Enums;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Core.Messaging.Implementations
 {
@@ -12,7 +10,7 @@ namespace Core.Messaging.Implementations
         public string Sender { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public object Content { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string Topic { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Priority Priority { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public PriorityLevel Priority { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public DateTime Date { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }
