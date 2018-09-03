@@ -4,9 +4,13 @@ namespace Core.Security.Cryptography.Contracts
 {
     public interface ISymmetricCryptoClient
     {
-        ISymmetricCryptoClient SetKey(string key);
+        byte[] Key { get; set; }
 
-        ISymmetricCryptoClient SetInjectionVector(byte[] iv);
+        byte[] IV { get; set; }
+
+        string KeyText { get; }
+
+        string IVText { get; }
 
         IResult<string> Encrypt(string plaintext);
 

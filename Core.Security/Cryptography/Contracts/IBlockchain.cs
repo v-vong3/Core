@@ -4,9 +4,15 @@ namespace Core.Security.Cryptography.Contracts
 {
     public interface IBlockchain : IHashable, IVerifiable
     {
-        string BlockKey { get; set; }
+        // TODO: Decide between string vs byte[] vs both
 
-        string BlockDigest { get; set; }
+        byte[] BlockKey { get; set; }
+
+        string BlockKeyText { get; }
+
+        byte[] BlockDigest { get; set; }
+
+        string BlockDigestText { get; }
 
     }
 

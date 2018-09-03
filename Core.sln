@@ -27,19 +27,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Globalization", "Core.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Exceptions", "Core.Exceptions\Core.Exceptions.csproj", "{6EA87FA7-4142-4B2F-B429-B0438637026B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Logging.Tests", "Core.Logging.Tests\Core.Logging.Tests.csproj", "{583A7F3D-5FE7-419C-8081-DF8E5ADB25FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Logging.Tests", "Core.Logging.Tests\Core.Logging.Tests.csproj", "{583A7F3D-5FE7-419C-8081-DF8E5ADB25FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Messaging.Tests", "Core.Messaging.Tests\Core.Messaging.Tests.csproj", "{A9E4EAED-8FD5-438E-BD48-5A084D6170DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Messaging.Tests", "Core.Messaging.Tests\Core.Messaging.Tests.csproj", "{A9E4EAED-8FD5-438E-BD48-5A084D6170DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Reflection.Tests", "Core.Reflection.Tests\Core.Reflection.Tests.csproj", "{507A810F-1D2B-4ADD-A4DF-FC197BBD76AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Reflection.Tests", "Core.Reflection.Tests\Core.Reflection.Tests.csproj", "{507A810F-1D2B-4ADD-A4DF-FC197BBD76AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Security.Tests", "Core.Security.Tests\Core.Security.Tests.csproj", "{144D0126-47F4-49B8-9835-4E65A63C930C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Security.Tests", "Core.Security.Tests\Core.Security.Tests.csproj", "{144D0126-47F4-49B8-9835-4E65A63C930C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Exceptions.Tests", "Core.Exceptions.Tests\Core.Exceptions.Tests.csproj", "{6ED5E081-8171-4777-892C-AC47C010D4EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Exceptions.Tests", "Core.Exceptions.Tests\Core.Exceptions.Tests.csproj", "{6ED5E081-8171-4777-892C-AC47C010D4EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Globalization.Tests", "Core.Globalization.Tests\Core.Globalization.Tests.csproj", "{748120DF-B418-46A1-A9FC-7A223A00C188}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Globalization.Tests", "Core.Globalization.Tests\Core.Globalization.Tests.csproj", "{748120DF-B418-46A1-A9FC-7A223A00C188}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Models.Tests", "Core.Models.Tests\Core.Models.Tests.csproj", "{CA7C6C5B-A8D2-4330-A4B1-D3210FD2592F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Models.Tests", "Core.Models.Tests\Core.Models.Tests.csproj", "{CA7C6C5B-A8D2-4330-A4B1-D3210FD2592F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Workflow", "Core.Workflow\Core.Workflow.csproj", "{50E061EC-B030-4465-9ABE-F380ED289B57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Workflow.Tests", "Core.Workflow.Tests\Core.Workflow.Tests.csproj", "{CCF30964-AABE-4C49-99D9-012148BBD751}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -115,6 +119,14 @@ Global
 		{CA7C6C5B-A8D2-4330-A4B1-D3210FD2592F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA7C6C5B-A8D2-4330-A4B1-D3210FD2592F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA7C6C5B-A8D2-4330-A4B1-D3210FD2592F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50E061EC-B030-4465-9ABE-F380ED289B57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50E061EC-B030-4465-9ABE-F380ED289B57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50E061EC-B030-4465-9ABE-F380ED289B57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50E061EC-B030-4465-9ABE-F380ED289B57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCF30964-AABE-4C49-99D9-012148BBD751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCF30964-AABE-4C49-99D9-012148BBD751}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCF30964-AABE-4C49-99D9-012148BBD751}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCF30964-AABE-4C49-99D9-012148BBD751}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,6 +149,8 @@ Global
 		{6ED5E081-8171-4777-892C-AC47C010D4EE} = {2B09013D-4761-4EA5-A677-D039C2BF2306}
 		{748120DF-B418-46A1-A9FC-7A223A00C188} = {2B09013D-4761-4EA5-A677-D039C2BF2306}
 		{CA7C6C5B-A8D2-4330-A4B1-D3210FD2592F} = {2B09013D-4761-4EA5-A677-D039C2BF2306}
+		{50E061EC-B030-4465-9ABE-F380ED289B57} = {F0C20C7E-EDCD-4183-B9BF-1C1168F15F95}
+		{CCF30964-AABE-4C49-99D9-012148BBD751} = {2B09013D-4761-4EA5-A677-D039C2BF2306}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2652E069-9852-4605-B55F-393E76498FF4}
