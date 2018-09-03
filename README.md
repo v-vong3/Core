@@ -44,4 +44,5 @@ Slowly converting code to .NET Standard 2 and revamping structures
 - [ ] Core.Models  
 - [-] Core.Reflection
 - [-] Core.Security  
-- [x] Core.Seeding  
+- [x] Core.Seeding 
+- [ ] Core.Workflow 
