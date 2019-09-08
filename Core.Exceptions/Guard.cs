@@ -58,7 +58,7 @@ namespace Core.Exceptions
 
             if (argument == null)
             {
-                throw new ArgumentNullException($"Parameter {argumentName} cannot be null");
+                throw new ArgumentNullException($"Parameter {argName} cannot be null");
             }
 
             return null;
@@ -72,11 +72,11 @@ namespace Core.Exceptions
         /// <returns>Throws appropriate exception if invalid, return null otherwise</returns>
         public static object AgainstNullVariable(string variable, string variableName)
         {
-            var name = FormatName(variableName);
+            var varName = FormatName(variableName);
 
             if (string.IsNullOrWhiteSpace(variable))
             {
-                throw new Exception($"{name} cannot be null, empty or whitespace");
+                throw new Exception($"{varName} cannot be null, empty or whitespace");
             }
 
             return null;
@@ -90,11 +90,11 @@ namespace Core.Exceptions
         /// <returns>Throws appropriate exception if invalid, return null otherwise</returns>
         public static object AgainstNullVariable(object variable, string variableName)
         {
-            var name = FormatName(variableName);
+            var varName = FormatName(variableName);
 
             if (variable == null)
             {
-                throw new NullReferenceException($"{name} cannot be null");
+                throw new NullReferenceException($"{varName} cannot be null");
             }
 
             return null;
@@ -154,11 +154,11 @@ namespace Core.Exceptions
             Guard.AgainstNullVariable(variableName, nameof(variableName));
             Guard.AgainstNullVariable(array, variableName);
 
-            var name = FormatName(variableName);
+            var varName = FormatName(variableName);
 
             if (array.Length == 0)
             {
-                throw new Exception($"{name} must contain at least 1 element.");
+                throw new Exception($"{varName} must contain at least 1 element.");
             }
 
             return null;

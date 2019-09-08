@@ -3,11 +3,14 @@ using System;
 
 namespace Core.Messaging.Contracts
 {
-    public interface IMessage
+    /// <summary>
+    /// Contract for a message unit to a <see cref="IMessageQueue"/>
+    /// </summary>
+    public interface IMessage : IComparable<IMessage>
     {
-        string Receiver { get; set; }
+        string MessageId { get; }
+        DateTime Timestamp { get; }
 
-        string Sender { get; set; }
 
         object Content { get; set; }
 
@@ -15,6 +18,6 @@ namespace Core.Messaging.Contracts
 
         PriorityLevel Priority { get; set; }
 
-        DateTime Date { get; set; }
+
     }
 }
