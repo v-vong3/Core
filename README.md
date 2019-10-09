@@ -36,6 +36,7 @@ Slowly converting code to .NET Standard 2 and revamping structures
 * [r] - reviewed  
 
 ### Modules
+- [ ] Core.DataAccess
 - [x] Core.Exceptions
 - [ ] Core.Globalization 
 - [x] Core.Interfaces  

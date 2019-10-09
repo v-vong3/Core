@@ -10,8 +10,7 @@ namespace Core.Messaging.Contracts
     public interface IMessageQueue : IEquatable<IMessageQueue>
     {
         string QueueId { get; }
-        string IP { get; }
-        int Port { get; }
+        string QueuePath { get; }
         bool IsPersistent { get; }
 
         /// <summary>
@@ -64,8 +63,7 @@ namespace Core.Messaging.Contracts
     public interface IMessageQueueAsync : IEquatable<IMessageQueue>
     {
         string QueueId { get; }
-        string IP { get; }
-        int Port { get; }
+        string QueuePath { get; }
         bool IsPersistent { get; }
 
         /// <summary>

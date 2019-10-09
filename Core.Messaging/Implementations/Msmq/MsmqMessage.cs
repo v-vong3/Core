@@ -14,7 +14,7 @@ namespace Core.Messaging.Implementations.Msmq
     public class MsmqMessage : IMessage
     {
 
-        private Message _message = null;
+        private Message _vendorMessage = null;
 
         public string MessageId
         { get; }
@@ -25,14 +25,14 @@ namespace Core.Messaging.Implementations.Msmq
             MessageId = messageId;
             Timestamp = DateTime.UtcNow;
 
-            _message = new Message(null, new XmlMessageFormatter(new string[] { }));
+            _vendorMessage = new Message(null, new XmlMessageFormatter(new string[] { }));
         }
 
 
         public object Content
         {
-            get { return _message; }
-            set { _message.Body = value; }
+            get { return _vendorMessage; }
+            set { _vendorMessage.Body = value; }
         }
 
 
@@ -76,9 +76,9 @@ namespace Core.Messaging.Implementations.Msmq
         {
             var sb = new StringBuilder();
 
-            if (_message != null)
+            if (_vendorMessage != null)
             {
-                using (var sr = new StreamReader(_message.BodyStream))
+                using (var sr = new StreamReader(_vendorMessage.BodyStream))
                 {
                     while (sr.Peek() >= 0)
                     {

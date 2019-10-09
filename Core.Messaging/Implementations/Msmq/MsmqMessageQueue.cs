@@ -1,60 +1,44 @@
-﻿using Core.Messaging.Contracts;
+﻿using Core.Exceptions;
+using Core.Messaging.Contracts;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Messaging; // C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2
-using System.Net;
-using System.Net.Sockets;
 
 namespace Core.Messaging.Implementations.Msmq
 {
     public class MsmqMessageQueue : IMessageQueue
     {
-        private MessageQueue _queue;
+        private MessageQueue _vendorQueue;
 
         public string QueueId { get; }
-        public string IP { get; }
-        public int Port { get; }
+        public string QueuePath { get; }
 
         public bool IsPersistent { get; }
 
         // TODO: Add argument validations
-        public MsmqMessageQueue(string queueId, string ip, int port = 80, bool isPersistent = true)
+        public MsmqMessageQueue(string queueId, string queuePath, bool isPersistent = true)
         {
+            Guard.AgainstNullArgument(queueId, nameof(queueId));
+            Guard.AgainstNullArgument(queuePath, nameof(queuePath));
+
+            if (!MessageQueue.Exists(queuePath))
+            {
+                throw new ArgumentException($"{nameof(queuePath)} does not exist");
+            }
+
             QueueId = queueId;
-            IP = ip;
-            Port = port;
+            QueuePath = queuePath;
             IsPersistent = isPersistent;
 
-            _queue = new MessageQueue(IP, false, false,
+            // Create the MSMQ Queue object
+            _vendorQueue = new MessageQueue(queuePath, false, false,
                 QueueAccessMode.SendAndReceive
                 | QueueAccessMode.PeekAndAdmin
                 | QueueAccessMode.ReceiveAndAdmin);
+
+            _vendorQueue.Formatter = new
         }
 
-        // TODO: Add error handling for port section
-        public MsmqMessageQueue(string queueId, string host, bool isPersistent = true)
-            : this(queueId, ConvertHostToIpAddress(host), int.Parse(host.Split(':')?[1]), isPersistent)
-        { }
-
-        private static string ConvertHostToIpAddress(string host)
-        {
-            var ipAddresses = Dns.GetHostAddresses(host);
-
-            if (ipAddresses.Length == 0)
-            {
-                throw new ArgumentException(nameof(host));
-            }
-
-            var ipV4 = ipAddresses.FirstOrDefault(address => address.AddressFamily == AddressFamily.InterNetwork)
-                                  ?.ToString();
-
-            var ipV6 = ipAddresses.FirstOrDefault(address => address.AddressFamily == AddressFamily.InterNetworkV6)
-                                  ?.ToString();
-
-
-            return ipV4 ?? ipV6;
-        }
 
         public string Topic { get; set; }
         public bool IsActive { get; set; }
@@ -64,7 +48,7 @@ namespace Core.Messaging.Implementations.Msmq
         {
             try
             {
-                _queue.Send(message.Content);
+                _vendorQueue.Send(message.Content);
 
                 return true;
             }
@@ -96,7 +80,7 @@ namespace Core.Messaging.Implementations.Msmq
         public bool Equals(IMessageQueue other)
         {
             // RULE: 
-            // Queues are considered equal when their Topics and IsActive flags are the equal
+            // Queues are considered equal when their [Topic] and [IsActive] properties are equal
             // This allows the same Message Consumer to process from multiple Queues
             return this.Topic.Equals(other.Topic)
                 && this.IsActive.Equals(other.IsActive);
